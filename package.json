@@ -1,0 +1,33 @@
+{
+  "name": "whoopsie",
+  "version": "1.0.0",
+  "description": "A tool for creating periodic backups of specified files and directories",
+  "main": "./dist/whoopsie.umd.js",
+  "module": "./dist/whoopsie.es.js",
+  "bin": {
+    "whoopsie": "./bin/whoopsie.js"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "watch": "vite build --watch",
+    "preview": "vite preview"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "dependencies": {
+    "archiver": "^5.3.1",
+    "chokidar": "^3.5.3",
+    "commander": "^11.0.0",
+    "ignore": "^5.2.4"
+  },
+  "devDependencies": {
+    "vite": "^4.4.0"
+  }
+}
