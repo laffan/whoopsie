@@ -4,6 +4,8 @@ Whoopsie is a command-line tool that watches specified files and directories and
 
 Basically, it's a way of automating the dumb-dumb backups I already do when working on a git project.  
 
+Built for MacOS, could probably be ported elsewhere without too much effort.
+
 ## Features
 
 - Watch specified files and directories for changes
