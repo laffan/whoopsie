@@ -9,7 +9,7 @@ import ignore from 'ignore';
 import readline from 'readline';
 
 const DEFAULT_SAVE_PATH = path.join(process.env.HOME || process.env.USERPROFILE, 'Documents', 'Whoopsie');
-const DEFAULT_INTERVAL = 60;
+const DEFAULT_INTERVAL = 30;
 
 function findGitignore(directory) {
   const gitignorePath = path.join(directory, '.gitignore');
@@ -95,7 +95,9 @@ async function whoopsie(projectName, fileTypes, options) {
     Object.keys(watched).forEach((dir) => {
       watched[dir].forEach((file) => {
         const fullPath = path.join(dir, file);
-        if (fs.statSync(fullPath).isFile() && fileTypes.some(type => fullPath.endsWith(type))) {
+        if (fs.statSync(fullPath).isFile() && 
+            fileTypes.some(type => fullPath.endsWith(type)) &&
+            (!options.only || options.only.some(onlyPath => fullPath.startsWith(path.join(watchPath, onlyPath))))) {
           filesToZip.push(fullPath);
         }
       });
@@ -124,7 +126,7 @@ export function cli() {
     .argument('[fileTypes]', 'Comma-separated list of file types to backup', '.js,.css,.html')
     .option('-s, --seconds <seconds>', 'Interval in seconds between backups', DEFAULT_INTERVAL.toString())
     .option('--saveTo <path>', 'Custom save path')
-    .option('--only <items>', 'Watch only specified files/folders (comma-separated)')
+    .option('--only <paths>', 'Watch only specified files/folders (comma-separated list of paths)')
     .option('--ignore <patterns>', 'Additional patterns to ignore (comma-separated)')
     .action(async (projectName, fileTypes, options) => {
       await whoopsie(projectName, fileTypes.split(','), {

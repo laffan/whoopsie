@@ -1,6 +1,6 @@
-# Whoopsie!
+# Whoopsie
 
-Whoopsie is a command-line tool that watches specified files and directories and creates periodic zip backups of specified file types, respecting `.gitignore` rules. 
+Whoopsie is a command-line tool that watches specified files and directories and creates periodic zip backups of specified file types, respecting `.gitignore` rules. It's perfect for creating quick, automatic backups of your projects.
 
 Basically, it's a way of automating the dumb-dumb backups I already do when working on a git project.  
 
@@ -13,6 +13,7 @@ Basically, it's a way of automating the dumb-dumb backups I already do when work
 - Customizable backup save location
 - Option to watch only specific files or directories
 - Option to add custom ignore patterns
+- Easy to install and use globally
 
 ## Installation
 
@@ -20,21 +21,17 @@ To install Whoopsie globally, follow these steps:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/whoopsie.git
+   git clone https://github.com/laffan/whoopsie.git
    cd whoopsie
    ```
 
-2. Install dependencies:
+2. Install dependencies and build the package:
    ```
    npm install
-   ```
-
-3. Build the package:
-   ```
    npm run build
    ```
 
-4. Create a global symlink:
+3. Create a global symlink:
    ```
    npm link
    ```
@@ -53,16 +50,15 @@ whoopsie [projectName] [filetypes] [options]
 - `filetypes`: Comma-separated list of file extensions to backup (default: .js,.css,.html)
 
 Options:
-- `--seconds <n>`: Set the interval between backups in seconds (default: 30)
+- `-s, --seconds <seconds>`: Set the interval between backups in seconds (default: 30)
 - `--saveTo <path>`: Specify a custom save location for backups
-- `--only <items>`: Watch only specified files/folders (comma-separated)
+- `--only <paths>`: Watch only specified files/folders (comma-separated list of paths)
 - `--ignore <patterns>`: Additional patterns to ignore (comma-separated)
 
 Examples:
 
 1. Basic usage (watches entire current directory):
    ```
-   cd /path/to/your/project
    whoopsie myProject .js,.css,.html --seconds 60
    ```
 
@@ -73,7 +69,7 @@ Examples:
 
 3. Watch only specific files/folders:
    ```
-   whoopsie myProject .js,.css,.html --only src,public,index.html
+   whoopsie myProject .js,.css,.html --only src,public/images,index.html
    ```
 
 4. Add custom ignore patterns:
@@ -86,9 +82,7 @@ Examples:
    whoopsie myProject .js,.css,.html --seconds 120 --saveTo /custom/save/path --only src,public --ignore temp,*.bak
    ```
 
-## .gitignore Behavior
-
-Whoopsie will search for a `.gitignore` file in the current directory and its parent directories. If found, it will use the rules in that file to determine which files to ignore. If no `.gitignore` file is found, Whoopsie will prompt the user to confirm if they want to proceed without it.
+This will watch the specified files and directories, creating backups of specified file types at the given interval, and save the backups to the specified location or `~/Documents/Whoopsie/[projectName]` if not specified.
 
 ## Development
 
@@ -108,4 +102,4 @@ npm unlink whoopsie
 
 ## License
 
-Whoopsie is a free-for all.
+Whoopsie is a free-for-all.
