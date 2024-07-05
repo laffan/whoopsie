@@ -2,7 +2,7 @@
 
 Whoopsie is a command-line tool that watches specified files and directories and creates periodic zip backups of specified file types, respecting `.gitignore` rules. It's perfect for creating quick, automatic backups of your projects.
 
-Basically, it's a way of automating the dumb-dumb backups I already do when working on a git project.  
+Basically, it's a way of automating the dumb-dumb backups I already do when working on a git project and I know I'll forget to commit regularly.  
 
 Built for MacOS, could probably be ported elsewhere without too much effort.
 
